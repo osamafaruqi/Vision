@@ -1,0 +1,59 @@
+﻿<div>  
+    <div class="row">
+        <button (click)="openModal('custom-modal-1')" class="btn btn-link">Examination</button>
+        <button (click)="openModal('custom-modal-2')" class="btn btn-link">Biometry</button>
+    </div>
+  <div class="row">
+    <fieldset class="fieldsetstyle">
+      <div class="col-sm">
+          <legend class="legendstyle">Patient List</legend>
+           <table class="table table-light table-hover table-striped">
+              
+            <thead class="thead-light">
+              <tr>
+                <th>Sequence</th>
+                <th>P.Name</th>
+                <th>Age/Gender</th>
+                <th>Type</th>
+                <th>Consultant</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  (click)="loadSummary(i,user.username)" *ngFor="let user of users; let i = index" [class.active]="i == selectedRow">
+                <td hidden="true">{{i+1}}</td>
+                <td>{{i+1}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        
+      </div>
+    </fieldset>
+    <div class="col-sm">
+      <patient-summary [patientID] = "patientID" *ngIf="loadSummaryComponent" ></patient-summary>
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
+
+
+
+
+<jw-modal id="custom-modal-1">
+  <h1>A Custom Modal!</h1>
+  <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+  <button (click)="closeModal('custom-modal-1');">Close</button>
+</jw-modal>
+
+<jw-modal id="custom-modal-2">
+  <h1 style="height:1000px">A Tall Custom Modal!</h1>
+  <button (click)="closeModal('custom-modal-2');">Close</button>
+</jw-modal>
+<!-- <ngbd-modal-basic></ngbd-modal-basic> -->
